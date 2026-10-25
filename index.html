@@ -314,6 +314,10 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a5 5 0 0 0 7.1 0l2.4-2.4a5 5 0 0 0-7.1-7.1L11 5.9"/><path d="M14 10a5 5 0 0 0-7.1 0L4.5 12.4a5 5 0 0 0 7.1 7.1L13 18.1"/></svg>
             Browse links
           </a>
+          <button class="btn btn-ghost" id="shareBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4"/><path d="M15.4 6.5l-6.8 4"/></svg>
+            Share
+          </button>
         </div>
       </div>
       <div class="hero-art">
@@ -334,6 +338,28 @@
 </header>
 
 <main class="wrap">
+
+  <!-- ============ LIVE RADIO ============ -->
+  <style>
+    .radio-card{display:flex;align-items:center;gap:16px;margin:4px 0 26px;padding:16px 20px;background:var(--glass);border:1px solid var(--glass-edge);border-radius:var(--radius);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:var(--shadow)}
+    .radio-play{flex:0 0 auto;width:52px;height:52px;border-radius:50%;border:1px solid var(--glass-edge);background:var(--red-deep);color:#0a0a0b;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+    .radio-play svg{width:24px;height:24px;display:block}
+    .radio-meta{min-width:0}
+    .radio-title{margin:0;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:9px}
+    .radio-sub{margin:3px 0 0;color:var(--ink-3);font-size:.9rem}
+    .live-dot{flex:0 0 auto;width:8px;height:8px;border-radius:50%;background:#ff3b30;box-shadow:0 0 0 0 rgba(255,59,48,.45);animation:livePulse 1.8s infinite}
+    @keyframes livePulse{70%{box-shadow:0 0 0 7px rgba(255,59,48,0)}100%{box-shadow:0 0 0 0 rgba(255,59,48,0)}}
+  </style>
+  <div class="radio-card" role="region" aria-label="Live radio player">
+    <button class="radio-play" id="radioPlay" type="button" aria-label="Play live radio">
+      <svg id="radioPlayIcon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+    </button>
+    <div class="radio-meta">
+      <p class="radio-title"><span class="live-dot"></span>Live Radio &mdash; Capital London</p>
+      <p class="radio-sub" id="radioStatus">Hit music, live from London &middot; tap play</p>
+    </div>
+    <audio id="radioAudio" preload="none" src="https://media-ice.musicradio.com/CapitalMP3"></audio>
+  </div>
 
   <!-- ============ LINKS ============ -->
   <section id="links" aria-labelledby="links-h">
@@ -701,6 +727,52 @@
   requestAnimationFrame(function(){
     setTimeout(function(){ bar.style.width = '98.2%'; }, 150);
   });
+
+  /* ---------- share ---------- */
+  var shareBtn = document.getElementById('shareBtn');
+  if (shareBtn) {
+    shareBtn.addEventListener('click', function(){
+      var shareData = { title: 'RAPTOR \u2014 Official Links', text: 'Welcome to SR WORLD \u26a1 \u2014 all RAPTOR links in one place', url: window.location.href };
+      if (navigator.share) {
+        navigator.share(shareData).catch(function(){});
+      } else {
+        copyText(shareData.url, function(){ showToast('Page link copied \u2014 share it anywhere'); });
+      }
+    });
+  }
+
+  /* ---------- live radio ---------- */
+  var radioAudio = document.getElementById('radioAudio'),
+      radioPlay = document.getElementById('radioPlay'),
+      radioIcon = document.getElementById('radioPlayIcon'),
+      radioStatus = document.getElementById('radioStatus'),
+      ICON_PLAY = '<path d="M8 5.5v13l11-6.5z"/>',
+      ICON_PAUSE = '<path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/>';
+  if (radioAudio && radioPlay) {
+    radioPlay.addEventListener('click', function(){
+      if (radioAudio.paused) {
+        radioStatus.textContent = 'Connecting to the live stream\u2026';
+        var p = radioAudio.play();
+        if (p) p.catch(function(){ radioStatus.textContent = 'Could not start the stream \u2014 tap again'; });
+      } else {
+        radioAudio.pause();
+      }
+    });
+    radioAudio.addEventListener('playing', function(){
+      radioIcon.innerHTML = ICON_PAUSE;
+      radioStatus.textContent = 'Now playing \u00b7 Capital London, live';
+      radioPlay.setAttribute('aria-label', 'Pause live radio');
+    });
+    radioAudio.addEventListener('pause', function(){
+      radioIcon.innerHTML = ICON_PLAY;
+      radioStatus.textContent = 'Paused \u00b7 tap play for live radio';
+      radioPlay.setAttribute('aria-label', 'Play live radio');
+    });
+    radioAudio.addEventListener('error', function(){
+      radioIcon.innerHTML = ICON_PLAY;
+      radioStatus.textContent = 'Stream unavailable right now \u2014 try again soon';
+    });
+  }
 
 })();
 </script>
