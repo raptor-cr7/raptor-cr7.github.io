@@ -280,7 +280,18 @@
     .gazette-body,.goat,.contact{padding:22px 20px}
     .countdown .cd-edition{margin-left:0;text-align:left}
   }
+  /* ---------- animations (added 2026-10-26) ---------- */
+  .js-anim .rv{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease,box-shadow .3s ease}
+  .js-anim .rv.in{opacity:1;transform:none}
+  @media (hover:hover) and (pointer:fine){
+    .linkcard:hover{border-color:rgba(255,255,255,.28);box-shadow:0 14px 34px rgba(0,0,0,.5),0 0 24px rgba(255,255,255,.10),inset 0 1px 0 var(--glass-hi)}
+    .goat:hover,.contact:hover,.radio-card:hover{border-color:rgba(255,255,255,.22);box-shadow:0 14px 34px rgba(0,0,0,.45),0 0 20px rgba(255,255,255,.07),inset 0 1px 0 var(--glass-hi)}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .js-anim .rv{opacity:1!important;transform:none!important;transition:none!important}
+  }
 </style>
+<script>document.documentElement.classList.add('js-anim');</script>
 </head>
 <body>
 
@@ -668,11 +679,74 @@
   tickClock();
   setInterval(tickClock, 1000);
 
-  /* ---------- GOAT bar ---------- */
-  var bar = document.getElementById('goatBar');
-  requestAnimationFrame(function(){
-    setTimeout(function(){ bar.style.width = '98.2%'; }, 150);
+  /* ---------- reveal animations ---------- */
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var revealEls = [];
+  ['.hero-grid > *', '.radio-card', '#links .sec-head', '#links .finder', '.linkcard', '#goat .goat', '#contact .contact'].forEach(function(sel){
+    document.querySelectorAll(sel).forEach(function(el){ if (revealEls.indexOf(el) === -1) revealEls.push(el); });
   });
+  revealEls.forEach(function(el, i){
+    el.classList.add('rv');
+    if (el.classList.contains('linkcard')) el.style.transitionDelay = ((i % 4) * 70) + 'ms';
+  });
+  function markIn(el){
+    el.classList.add('in');
+    setTimeout(function(){ el.style.transitionDelay = '0ms'; }, 900);
+  }
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealEls.forEach(markIn);
+  } else {
+    var rvObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) { markIn(en.target); rvObs.unobserve(en.target); }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function(el){ rvObs.observe(el); });
+  }
+
+  /* ---------- GOAT count-up + bar (values read from the page text, so daily updates stay in sync) ---------- */
+  var bar = document.getElementById('goatBar');
+  var goatSec = document.getElementById('goat');
+  var bigNum = goatSec ? goatSec.querySelector('.big em') : null;
+  var underNum = goatSec ? goatSec.querySelector('.under b') : null;
+  var smallEl = goatSec ? goatSec.querySelector('.big small') : null;
+  var goalTarget = bigNum ? parseInt(bigNum.textContent.replace(/[^0-9]/g, ''), 10) : NaN;
+  var goalTotal = 1000;
+  if (smallEl) { var gtParsed = parseInt(smallEl.textContent.replace(/[^0-9]/g, ''), 10); if (gtParsed > 0) goalTotal = gtParsed; }
+  function goatFinal(){
+    if (!isNaN(goalTarget)) {
+      if (bigNum) bigNum.textContent = String(goalTarget);
+      if (underNum) underNum.textContent = String(goalTarget);
+      if (bar) bar.style.width = (goalTarget / goalTotal * 100).toFixed(1) + '%';
+    }
+  }
+  var goatDone = false;
+  function goatAnimate(){
+    if (goatDone) return; goatDone = true;
+    if (reduceMotion || isNaN(goalTarget) || !bigNum || !bar) { goatFinal(); return; }
+    var dur = 1200, t0 = null;
+    bar.style.transition = 'none';
+    function frame(ts){
+      if (!t0) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1);
+      var e = 1 - Math.pow(1 - p, 3);
+      var val = Math.round(goalTarget * e);
+      bigNum.textContent = String(val);
+      if (underNum) underNum.textContent = String(val);
+      bar.style.width = (goalTarget / goalTotal * 100 * e).toFixed(1) + '%';
+      if (p < 1) { requestAnimationFrame(frame); }
+      else { bar.style.transition = ''; goatFinal(); }
+    }
+    requestAnimationFrame(frame);
+  }
+  if (goatSec && ('IntersectionObserver' in window) && !reduceMotion) {
+    var gObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if (en.isIntersecting) { goatAnimate(); gObs.disconnect(); } });
+    }, { threshold: 0.2 });
+    gObs.observe(goatSec);
+  } else {
+    goatFinal();
+  }
 
   /* ---------- tap feedback: vibration + shake ---------- */
   document.addEventListener('click', function(ev){
