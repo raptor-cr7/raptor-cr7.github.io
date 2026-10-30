@@ -308,13 +308,6 @@
 </head>
 <body>
 
-<div class="topstrip">
-  <div class="wrap">
-    <span><span class="dot"></span>Dubai, UAE — <b id="dubaiClock">--:--:--</b> GST</span>
-    <span>Instagram · <b>@raptor.cr7</b></span>
-  </div>
-</div>
-
 <header class="hero">
   <div class="wrap">
     <div class="hero-grid">
@@ -699,7 +692,7 @@
   }
   function pad(n){ return (n < 10 ? '0' : '') + n; }
   function tickClock(){
-    try { clockEl.textContent = fmt.format(new Date()); } catch(e){}
+    if (clockEl) { try { clockEl.textContent = fmt.format(new Date()); } catch(e){} }
     var p = dubaiNowParts();
     var nowSec = p.hour * 3600 + p.minute * 60 + p.second;
     var morning = 6 * 3600, evening = 18 * 3600, target, name, when;
