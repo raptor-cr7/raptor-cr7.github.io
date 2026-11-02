@@ -43,14 +43,14 @@
     --blur:blur(18px) saturate(140%);
   }
   *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  html{background:var(--bg);scroll-behavior:smooth}
   body{
     margin:0;background:var(--bg);color:var(--ink);
     font-family:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
     -webkit-font-smoothing:antialiased;line-height:1.5;
   }
   body::before{
-    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;transform:translateZ(0);
     background:
       radial-gradient(900px 620px at 8% -10%, var(--glow-red), transparent 62%),
       radial-gradient(860px 640px at 108% 28%, var(--glow-gold), transparent 62%),
@@ -59,13 +59,10 @@
   }
   /* ---------- Red gradient theme ---------- */
   body::after{
-    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.25;
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.25;transform:translateZ(0);
     background:linear-gradient(120deg,var(--gr-red),var(--gr-deep),var(--gr-dark),var(--gr-red));
     background-size:300% 300%;
   }
-  /* ---------- optimisation: skip rendering off-screen sections until near view ---------- */
-  #links{content-visibility:auto;contain-intrinsic-size:auto 900px}
-  #contact{content-visibility:auto;contain-intrinsic-size:auto 420px}
   .mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
   a{color:inherit}
   img{display:block;max-width:100%;height:auto}
