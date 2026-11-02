@@ -33,12 +33,12 @@
     --glass-edge:rgba(255,255,255,.13);
     --glass-ink:rgba(238,238,240,.94);
     --sheen:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,0) 42%);
-    --glow-red:rgba(143,29,34,.25);
-    --glow-gold:rgba(20,83,45,.22);
-    --xm-red:#8f1d22;
-    --xm-green:#14532d;
-    --xm-gold:#92600a;
-    --xm-snow:#d6d3d1;
+    --glow-red:rgba(255,107,0,.22);
+    --glow-gold:rgba(139,47,247,.20);
+    --hw-orange:#ff6b00;
+    --hw-purple:#8b2ff7;
+    --hw-green:#39d353;
+    --hw-pink:#ff2e88;
     --blur:blur(18px) saturate(140%);
   }
   *{box-sizing:border-box}
@@ -55,30 +55,36 @@
       radial-gradient(860px 640px at 108% 28%, var(--glow-gold), transparent 62%),
       radial-gradient(820px 620px at 50% 118%, var(--glow-red), transparent 65%),
       radial-gradient(600px 420px at 88% 92%, var(--glow-gold), transparent 65%);
-    animation:christmasHue 30s linear infinite;
+    animation:halloweenHue 30s linear infinite;
   }
-  /* ---------- Christmas colour-changing gradient ---------- */
+  /* ---------- Halloween colour-changing gradient ---------- */
   body::after{
     content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.25;
-    background:linear-gradient(120deg,var(--xm-red),var(--xm-green),var(--xm-gold),var(--xm-snow),var(--xm-red));
+    background:linear-gradient(120deg,var(--hw-orange),var(--hw-purple),var(--hw-green),var(--hw-pink),var(--hw-orange));
     background-size:300% 300%;
-    animation:christmasWash 32s ease-in-out infinite alternate;
+    animation:halloweenWash 32s ease-in-out infinite alternate;
   }
-  @keyframes christmasHue{from{filter:hue-rotate(0deg)}to{filter:hue-rotate(360deg)}}
-  @keyframes christmasWash{0%{background-position:0% 0%}50%{background-position:100% 100%}100%{background-position:0% 100%}}
+  @keyframes halloweenHue{from{filter:hue-rotate(0deg)}to{filter:hue-rotate(360deg)}}
+  @keyframes halloweenWash{0%{background-position:0% 0%}50%{background-position:100% 100%}100%{background-position:0% 100%}}
   @keyframes gradientSlide{to{background-position:300% 0}}
   @media (prefers-reduced-motion: reduce){
     body::before,body::after,.hero-eyebrow,.btn-primary{animation:none}
-    .xm-fx{display:none}
+    .hw-fx{display:none}
   }
-  /* ---------- Christmas effects (snow, transform-only) ---------- */
-  .xm-fx{position:fixed;inset:0;pointer-events:none;z-index:60;overflow:hidden}
-  .xm-fx span{position:absolute}
-  .xm-fx svg{display:block}
-  .fx-snow{top:-40px;will-change:transform;animation:snowFall var(--d,22s) linear infinite;animation-delay:var(--dl,0s);opacity:.85}
-  .fx-snow svg{width:var(--s,18px);height:var(--s,18px);animation:snowSway 3s ease-in-out infinite alternate}
-  @keyframes snowFall{from{transform:translateY(-40px)}to{transform:translateY(108vh)}}
-  @keyframes snowSway{from{transform:translateX(-14px) rotate(-30deg)}to{transform:translateX(14px) rotate(30deg)}}
+  /* ---------- Halloween effects (detailed SVG, transform-only) ---------- */
+  .hw-fx{position:fixed;inset:0;pointer-events:none;z-index:60;overflow:hidden}
+  .hw-fx span,.hw-fx div{position:absolute}
+  .hw-fx svg{display:block}
+  .fx-bat{left:0;will-change:transform;animation:batFly var(--d,20s) linear infinite;animation-delay:var(--dl,0s)}
+  .fx-bat{opacity:.8}
+  .fx-bat svg{width:52px;height:28px;animation:batBob 1.6s ease-in-out infinite alternate}
+  .fx-bat.small svg{width:38px;height:21px}
+  @keyframes batFly{from{transform:translateX(-15vw)}to{transform:translateX(115vw)}}
+  @keyframes batBob{from{transform:translateY(0) rotate(-3deg)}to{transform:translateY(-12px) rotate(3deg)}}
+  .bat-wing-l{transform-box:fill-box;transform-origin:100% 50%;animation:flapL .38s ease-in-out infinite alternate}
+  .bat-wing-r{transform-box:fill-box;transform-origin:0% 50%;animation:flapR .38s ease-in-out infinite alternate}
+  @keyframes flapL{from{transform:rotate(-24deg)}to{transform:rotate(20deg)}}
+  @keyframes flapR{from{transform:rotate(24deg)}to{transform:rotate(-20deg)}}
   /* ---------- optimisation: skip rendering off-screen sections until near view ---------- */
   #links{content-visibility:auto;contain-intrinsic-size:auto 900px}
   #contact{content-visibility:auto;contain-intrinsic-size:auto 420px}
@@ -100,7 +106,7 @@
   /* ---------- hero ---------- */
   .hero{padding:44px 0 8px}
   .hero-grid{display:grid;grid-template-columns:1.25fr .85fr;gap:34px;align-items:center}
-  .hero-eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;letter-spacing:.06em;margin:0 0 10px;background:linear-gradient(90deg,var(--xm-red),var(--xm-gold),var(--xm-green),var(--xm-snow),var(--xm-red));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:gradientSlide 10s linear infinite}
+  .hero-eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;letter-spacing:.06em;margin:0 0 10px;background:linear-gradient(90deg,var(--hw-orange),var(--hw-pink),var(--hw-purple),var(--hw-green),var(--hw-orange));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:gradientSlide 10s linear infinite}
   h1.display{
     margin:0;font-weight:900;line-height:.92;letter-spacing:-.015em;
     font-size:clamp(64px,11vw,124px);text-transform:uppercase;
@@ -116,14 +122,14 @@
     box-shadow:inset 0 1px 0 var(--glass-hi);
     padding:5px 13px;font-size:13px;font-weight:600;color:var(--ink-2);
   }
-  .chips li.hot{border-color:var(--xm-red);color:#e8a0a0;background:rgba(143,29,34,.16)}
+  .chips li.hot{border-color:var(--hw-orange);color:#ffb347;background:rgba(255,107,0,.12)}
   .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
   .btn{
     display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:700;font-size:15px;
     padding:13px 22px;border-radius:12px;border:1.5px solid var(--ink);transition:transform .15s ease,background .15s ease,color .15s ease;
   }
   .btn svg{width:17px;height:17px;flex:none}
-  .btn-primary{background:linear-gradient(120deg,var(--xm-red),var(--xm-green),var(--xm-gold),var(--xm-snow),var(--xm-red));background-size:300% 100%;animation:gradientSlide 10s linear infinite;border-color:transparent;color:#ffffff;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 10px 24px rgba(0,0,0,.45)}
+  .btn-primary{background:linear-gradient(120deg,var(--hw-orange),var(--hw-pink),var(--hw-purple),var(--hw-green),var(--hw-orange));background-size:300% 100%;animation:gradientSlide 10s linear infinite;border-color:transparent;color:#ffffff;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 10px 24px rgba(0,0,0,.45)}
   .btn-primary:hover{filter:brightness(1.12)}
   .btn-ghost{background:var(--glass);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);color:var(--ink);box-shadow:inset 0 1px 0 var(--glass-hi)}
   .btn-ghost:hover{background:var(--ink);color:var(--bg)}
@@ -337,11 +343,9 @@
 <script>document.documentElement.classList.add('js-anim');</script>
 </head>
 <body>
-  <div class="xm-fx" aria-hidden="true">
-    <span class="fx-snow" style="left:10%;--d:22s;--dl:0s;--s:16px"><svg viewBox="0 0 24 24" aria-hidden="true"><g stroke="#e8e8f0" stroke-width="1.6" stroke-linecap="round"><path d="M12 2 L12 22"/><path d="M2 12 L22 12"/><path d="M4.9 4.9 L19.1 19.1"/><path d="M19.1 4.9 L4.9 19.1"/></g></svg></span>
-    <span class="fx-snow" style="left:32%;--d:27s;--dl:7s;--s:22px"><svg viewBox="0 0 24 24" aria-hidden="true"><g stroke="#e8e8f0" stroke-width="1.6" stroke-linecap="round"><path d="M12 2 L12 22"/><path d="M2 12 L22 12"/><path d="M4.9 4.9 L19.1 19.1"/><path d="M19.1 4.9 L4.9 19.1"/></g></svg></span>
-    <span class="fx-snow" style="left:64%;--d:24s;--dl:13s;--s:14px"><svg viewBox="0 0 24 24" aria-hidden="true"><g stroke="#e8e8f0" stroke-width="1.6" stroke-linecap="round"><path d="M12 2 L12 22"/><path d="M2 12 L22 12"/><path d="M4.9 4.9 L19.1 19.1"/><path d="M19.1 4.9 L4.9 19.1"/></g></svg></span>
-    <span class="fx-snow" style="left:86%;--d:30s;--dl:4s;--s:19px"><svg viewBox="0 0 24 24" aria-hidden="true"><g stroke="#e8e8f0" stroke-width="1.6" stroke-linecap="round"><path d="M12 2 L12 22"/><path d="M2 12 L22 12"/><path d="M4.9 4.9 L19.1 19.1"/><path d="M19.1 4.9 L4.9 19.1"/></g></svg></span>
+  <div class="hw-fx" aria-hidden="true">
+    <span class="fx-bat" style="top:7%;--d:26s;--dl:0s"><svg viewBox="0 0 120 64" aria-hidden="true"><g fill="#000000"><g class="bat-wing-l"><path d="M60 32 C44 6 24 2 10 14 C20 16 26 24 28 32 C20 30 12 32 6 40 C18 40 28 44 36 48 C44 42 54 38 60 36 Z"/></g><g class="bat-wing-r"><path d="M60 32 C76 6 96 2 110 14 C100 16 94 24 92 32 C100 30 108 32 114 40 C102 40 92 44 84 48 C76 42 66 38 60 36 Z"/></g><ellipse cx="60" cy="34" rx="7" ry="10"/><circle cx="60" cy="22" r="5.5"/><path d="M55 18 L56 10 L60 16 L64 10 L65 18 Z"/><circle cx="58" cy="21" r="1.1" fill="#ff5a5a"/><circle cx="62" cy="21" r="1.1" fill="#ff5a5a"/></g></svg></span>
+    <span class="fx-bat small" style="top:14%;--d:38s;--dl:12s"><svg viewBox="0 0 120 64" aria-hidden="true"><g fill="#000000"><g class="bat-wing-l"><path d="M60 32 C44 6 24 2 10 14 C20 16 26 24 28 32 C20 30 12 32 6 40 C18 40 28 44 36 48 C44 42 54 38 60 36 Z"/></g><g class="bat-wing-r"><path d="M60 32 C76 6 96 2 110 14 C100 16 94 24 92 32 C100 30 108 32 114 40 C102 40 92 44 84 48 C76 42 66 38 60 36 Z"/></g><ellipse cx="60" cy="34" rx="7" ry="10"/><circle cx="60" cy="22" r="5.5"/><path d="M55 18 L56 10 L60 16 L64 10 L65 18 Z"/><circle cx="58" cy="21" r="1.1" fill="#ff5a5a"/><circle cx="62" cy="21" r="1.1" fill="#ff5a5a"/></g></svg></span>
   </div>
 
 <header class="hero">
@@ -353,7 +357,7 @@
         <p class="hero-name">@raptor.cr7</p>
         <p class="hero-bio">Welcome to SR WORLD ⚡</p>
         <ul class="chips">
-          <li class="hot">🎄 Christmas Edition</li>
+          <li class="hot">🎃 Halloween Edition</li>
           <li class="hot">#kl03</li>
           <li>#malayali</li>
           <li>#kerala</li>
