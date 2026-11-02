@@ -55,14 +55,14 @@
       radial-gradient(860px 640px at 108% 28%, var(--glow-gold), transparent 62%),
       radial-gradient(820px 620px at 50% 118%, var(--glow-red), transparent 65%),
       radial-gradient(600px 420px at 88% 92%, var(--glow-gold), transparent 65%);
-    animation:halloweenHue 16s linear infinite;
+    animation:halloweenHue 30s linear infinite;
   }
   /* ---------- Halloween colour-changing gradient ---------- */
   body::after{
     content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.25;
     background:linear-gradient(120deg,var(--hw-orange),var(--hw-purple),var(--hw-green),var(--hw-pink),var(--hw-orange));
     background-size:300% 300%;
-    animation:halloweenWash 18s ease-in-out infinite alternate;
+    animation:halloweenWash 32s ease-in-out infinite alternate;
   }
   @keyframes halloweenHue{from{filter:hue-rotate(0deg)}to{filter:hue-rotate(360deg)}}
   @keyframes halloweenWash{0%{background-position:0% 0%}50%{background-position:100% 100%}100%{background-position:0% 100%}}
@@ -76,32 +76,15 @@
   .hw-fx span,.hw-fx div{position:absolute}
   .hw-fx svg{display:block}
   .fx-bat{left:0;will-change:transform;animation:batFly var(--d,20s) linear infinite;animation-delay:var(--dl,0s)}
-  .fx-bat svg{width:64px;height:34px;animation:batBob 1.6s ease-in-out infinite alternate}
-  .fx-bat.small svg{width:44px;height:24px}
+  .fx-bat{opacity:.8}
+  .fx-bat svg{width:52px;height:28px;animation:batBob 1.6s ease-in-out infinite alternate}
+  .fx-bat.small svg{width:38px;height:21px}
   @keyframes batFly{from{transform:translateX(-15vw)}to{transform:translateX(115vw)}}
   @keyframes batBob{from{transform:translateY(0) rotate(-3deg)}to{transform:translateY(-12px) rotate(3deg)}}
   .bat-wing-l{transform-box:fill-box;transform-origin:100% 50%;animation:flapL .38s ease-in-out infinite alternate}
   .bat-wing-r{transform-box:fill-box;transform-origin:0% 50%;animation:flapR .38s ease-in-out infinite alternate}
   @keyframes flapL{from{transform:rotate(-24deg)}to{transform:rotate(20deg)}}
   @keyframes flapR{from{transform:rotate(24deg)}to{transform:rotate(-20deg)}}
-  .fx-ghost{will-change:transform;animation:ghostFloat 5s ease-in-out infinite alternate}
-  .fx-ghost svg{width:44px;height:56px}
-  @keyframes ghostFloat{from{transform:translateY(0) rotate(-4deg)}to{transform:translateY(-16px) rotate(4deg)}}
-  .fx-spider{top:0;will-change:transform;transform-origin:top center;animation:spiderSway 6s ease-in-out infinite alternate}
-  .fx-spider i{display:block;width:1px;height:80px;margin:0 auto;background:rgba(255,255,255,.35)}
-  .fx-spider svg{width:26px;height:26px}
-  @keyframes spiderSway{from{transform:rotate(-5deg) translateY(0)}to{transform:rotate(5deg) translateY(26px)}}
-  .fx-leaf{top:-50px;will-change:transform;animation:leafFall var(--d,15s) linear infinite;animation-delay:var(--dl,0s)}
-  .fx-leaf svg{width:22px;height:22px;animation:leafSway 2.2s ease-in-out infinite alternate}
-  @keyframes leafFall{from{transform:translateY(-50px)}to{transform:translateY(108vh)}}
-  @keyframes leafSway{from{transform:translateX(-16px) rotate(-46deg)}to{transform:translateX(16px) rotate(46deg)}}
-  .fx-pump{bottom:12px;will-change:transform;animation:pumpBob 3.2s ease-in-out infinite alternate}
-  .fx-pump svg{width:74px;height:64px}
-  @keyframes pumpBob{from{transform:translateY(0)}to{transform:translateY(-10px)}}
-  .pump-glow{animation:flick 2.6s ease-in-out infinite}
-  @keyframes flick{0%,100%{opacity:.75}25%{opacity:.95}50%{opacity:.6}70%{opacity:1}85%{opacity:.8}}
-  .fx-fog{left:-20%;width:140%;background:radial-gradient(ellipse at center,rgba(200,200,215,.13),transparent 70%);will-change:transform;animation:fogDrift var(--fd,26s) ease-in-out infinite alternate;animation-delay:var(--fdl,0s)}
-  @keyframes fogDrift{from{transform:translateX(-4%)}to{transform:translateX(4%)}}
   /* ---------- optimisation: skip rendering off-screen sections until near view ---------- */
   #links{content-visibility:auto;contain-intrinsic-size:auto 900px}
   #contact{content-visibility:auto;contain-intrinsic-size:auto 420px}
@@ -123,7 +106,7 @@
   /* ---------- hero ---------- */
   .hero{padding:44px 0 8px}
   .hero-grid{display:grid;grid-template-columns:1.25fr .85fr;gap:34px;align-items:center}
-  .hero-eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;letter-spacing:.06em;margin:0 0 10px;background:linear-gradient(90deg,var(--hw-orange),var(--hw-pink),var(--hw-purple),var(--hw-green),var(--hw-orange));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:gradientSlide 6s linear infinite}
+  .hero-eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;letter-spacing:.06em;margin:0 0 10px;background:linear-gradient(90deg,var(--hw-orange),var(--hw-pink),var(--hw-purple),var(--hw-green),var(--hw-orange));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:gradientSlide 10s linear infinite}
   h1.display{
     margin:0;font-weight:900;line-height:.92;letter-spacing:-.015em;
     font-size:clamp(64px,11vw,124px);text-transform:uppercase;
@@ -146,7 +129,7 @@
     padding:13px 22px;border-radius:12px;border:1.5px solid var(--ink);transition:transform .15s ease,background .15s ease,color .15s ease;
   }
   .btn svg{width:17px;height:17px;flex:none}
-  .btn-primary{background:linear-gradient(120deg,var(--hw-orange),var(--hw-pink),var(--hw-purple),var(--hw-green),var(--hw-orange));background-size:300% 100%;animation:gradientSlide 6s linear infinite;border-color:transparent;color:#ffffff;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 10px 24px rgba(0,0,0,.45)}
+  .btn-primary{background:linear-gradient(120deg,var(--hw-orange),var(--hw-pink),var(--hw-purple),var(--hw-green),var(--hw-orange));background-size:300% 100%;animation:gradientSlide 10s linear infinite;border-color:transparent;color:#ffffff;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 10px 24px rgba(0,0,0,.45)}
   .btn-primary:hover{filter:brightness(1.12)}
   .btn-ghost{background:var(--glass);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);color:var(--ink);box-shadow:inset 0 1px 0 var(--glass-hi)}
   .btn-ghost:hover{background:var(--ink);color:var(--bg)}
@@ -361,18 +344,8 @@
 </head>
 <body>
   <div class="hw-fx" aria-hidden="true">
-    <span class="fx-bat" style="top:7%;--d:17s;--dl:0s"><svg viewBox="0 0 120 64" aria-hidden="true"><g fill="#000000"><g class="bat-wing-l"><path d="M60 32 C44 6 24 2 10 14 C20 16 26 24 28 32 C20 30 12 32 6 40 C18 40 28 44 36 48 C44 42 54 38 60 36 Z"/></g><g class="bat-wing-r"><path d="M60 32 C76 6 96 2 110 14 C100 16 94 24 92 32 C100 30 108 32 114 40 C102 40 92 44 84 48 C76 42 66 38 60 36 Z"/></g><ellipse cx="60" cy="34" rx="7" ry="10"/><circle cx="60" cy="22" r="5.5"/><path d="M55 18 L56 10 L60 16 L64 10 L65 18 Z"/><circle cx="58" cy="21" r="1.1" fill="#ff5a5a"/><circle cx="62" cy="21" r="1.1" fill="#ff5a5a"/></g></svg></span>
-    <span class="fx-bat" style="top:16%;--d:24s;--dl:8s"><svg viewBox="0 0 120 64" aria-hidden="true"><g fill="#000000"><g class="bat-wing-l"><path d="M60 32 C44 6 24 2 10 14 C20 16 26 24 28 32 C20 30 12 32 6 40 C18 40 28 44 36 48 C44 42 54 38 60 36 Z"/></g><g class="bat-wing-r"><path d="M60 32 C76 6 96 2 110 14 C100 16 94 24 92 32 C100 30 108 32 114 40 C102 40 92 44 84 48 C76 42 66 38 60 36 Z"/></g><ellipse cx="60" cy="34" rx="7" ry="10"/><circle cx="60" cy="22" r="5.5"/><path d="M55 18 L56 10 L60 16 L64 10 L65 18 Z"/><circle cx="58" cy="21" r="1.1" fill="#ff5a5a"/><circle cx="62" cy="21" r="1.1" fill="#ff5a5a"/></g></svg></span>
-    <span class="fx-bat small" style="top:4%;--d:31s;--dl:15s"><svg viewBox="0 0 120 64" aria-hidden="true"><g fill="#000000"><g class="bat-wing-l"><path d="M60 32 C44 6 24 2 10 14 C20 16 26 24 28 32 C20 30 12 32 6 40 C18 40 28 44 36 48 C44 42 54 38 60 36 Z"/></g><g class="bat-wing-r"><path d="M60 32 C76 6 96 2 110 14 C100 16 94 24 92 32 C100 30 108 32 114 40 C102 40 92 44 84 48 C76 42 66 38 60 36 Z"/></g><ellipse cx="60" cy="34" rx="7" ry="10"/><circle cx="60" cy="22" r="5.5"/><path d="M55 18 L56 10 L60 16 L64 10 L65 18 Z"/><circle cx="58" cy="21" r="1.1" fill="#ff5a5a"/><circle cx="62" cy="21" r="1.1" fill="#ff5a5a"/></g></svg></span>
-    <span class="fx-ghost" style="top:22%;right:7%"><svg viewBox="0 0 80 100" aria-hidden="true"><path d="M40 4 C22 4 12 22 12 42 L12 84 Q18 76 24 84 Q30 76 36 84 Q42 76 48 84 Q54 76 60 84 Q66 76 68 84 L68 42 C68 22 58 4 40 4 Z" fill="#f4f4f5" opacity=".93"/><ellipse cx="30" cy="40" rx="4.5" ry="6" fill="#191920"/><ellipse cx="50" cy="40" rx="4.5" ry="6" fill="#191920"/><ellipse cx="40" cy="54" rx="4" ry="5" fill="#191920"/></svg></span>
-    <span class="fx-spider" style="left:9%"><i></i><svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="#454550" stroke-width="2" stroke-linecap="round" fill="none"><path d="M20 14 L8 4"/><path d="M20 14 L32 4"/><path d="M20 18 L6 14"/><path d="M20 18 L34 14"/><path d="M20 22 L8 30"/><path d="M20 22 L32 30"/><path d="M20 26 L12 36"/><path d="M20 26 L28 36"/></g><ellipse cx="20" cy="18" rx="7" ry="9" fill="#33333f"/><circle cx="20" cy="9" r="4.5" fill="#33333f"/><circle cx="18" cy="8" r="1" fill="#ff5a5a"/><circle cx="22" cy="8" r="1" fill="#ff5a5a"/></svg></span>
-    <span class="fx-leaf" style="left:14%;--d:14s;--dl:0s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1 C18 5 21 11 12 23 C3 11 6 5 12 1 Z" fill="#c2571b"/><path d="M12 3 L12 21" stroke="#7d3a10" stroke-width="1.1"/></svg></span>
-    <span class="fx-leaf" style="left:52%;--d:18s;--dl:6s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1 C18 5 21 11 12 23 C3 11 6 5 12 1 Z" fill="#d98a2b"/><path d="M12 3 L12 21" stroke="#7d3a10" stroke-width="1.1"/></svg></span>
-    <span class="fx-leaf" style="left:84%;--d:16s;--dl:10s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1 C18 5 21 11 12 23 C3 11 6 5 12 1 Z" fill="#a34d1d"/><path d="M12 3 L12 21" stroke="#7d3a10" stroke-width="1.1"/></svg></span>
-    <span class="fx-pump" style="left:2%"><svg viewBox="0 0 120 104" aria-hidden="true"><defs><radialGradient id="pg1" cx="50%" cy="58%" r="62%"><stop offset="0%" stop-color="#ffd75e"/><stop offset="55%" stop-color="#ff9d00"/><stop offset="100%" stop-color="#ff7a00" stop-opacity="0"/></radialGradient></defs><ellipse cx="60" cy="96" rx="46" ry="6" fill="#000" opacity=".35"/><path d="M60 22 C34 22 16 40 16 62 C16 82 36 94 60 94 C84 94 104 82 104 62 C104 40 86 22 60 22 Z" fill="#e8721c"/><path d="M60 22 C48 34 44 58 46 94 M60 22 C72 34 76 58 74 94 M60 22 L60 94" stroke="#b94e0e" stroke-width="2" fill="none" opacity=".7"/><path d="M56 22 C56 12 60 8 66 6 C64 14 62 18 62 22 Z" fill="#6b4423"/><circle class="pump-glow" cx="60" cy="60" r="34" fill="url(#pg1)"/><g fill="#2a1503"><path d="M38 48 L48 44 L46 56 Z"/><path d="M82 48 L72 44 L74 56 Z"/><path d="M56 58 L64 58 L60 66 Z"/><path d="M34 68 Q60 82 86 68 L80 76 L74 71 L68 77 L60 72 L52 77 L46 71 L40 76 Z"/></g></svg></span>
-    <span class="fx-pump" style="right:2%"><svg viewBox="0 0 120 104" aria-hidden="true"><defs><radialGradient id="pg2" cx="50%" cy="58%" r="62%"><stop offset="0%" stop-color="#ffd75e"/><stop offset="55%" stop-color="#ff9d00"/><stop offset="100%" stop-color="#ff7a00" stop-opacity="0"/></radialGradient></defs><ellipse cx="60" cy="96" rx="46" ry="6" fill="#000" opacity=".35"/><path d="M60 22 C34 22 16 40 16 62 C16 82 36 94 60 94 C84 94 104 82 104 62 C104 40 86 22 60 22 Z" fill="#e8721c"/><path d="M60 22 C48 34 44 58 46 94 M60 22 C72 34 76 58 74 94 M60 22 L60 94" stroke="#b94e0e" stroke-width="2" fill="none" opacity=".7"/><path d="M56 22 C56 12 60 8 66 6 C64 14 62 18 62 22 Z" fill="#6b4423"/><circle class="pump-glow" cx="60" cy="60" r="34" fill="url(#pg2)"/><g fill="#2a1503"><path d="M38 48 L48 44 L46 56 Z"/><path d="M82 48 L72 44 L74 56 Z"/><path d="M56 58 L64 58 L60 66 Z"/><path d="M34 68 Q60 82 86 68 L80 76 L74 71 L68 77 L60 72 L52 77 L46 71 L40 76 Z"/></g></svg></span>
-    <div class="fx-fog" style="bottom:0;height:130px"></div>
-    <div class="fx-fog" style="bottom:70px;height:90px;--fd:34s;--fdl:-12s"></div>
+    <span class="fx-bat" style="top:7%;--d:26s;--dl:0s"><svg viewBox="0 0 120 64" aria-hidden="true"><g fill="#000000"><g class="bat-wing-l"><path d="M60 32 C44 6 24 2 10 14 C20 16 26 24 28 32 C20 30 12 32 6 40 C18 40 28 44 36 48 C44 42 54 38 60 36 Z"/></g><g class="bat-wing-r"><path d="M60 32 C76 6 96 2 110 14 C100 16 94 24 92 32 C100 30 108 32 114 40 C102 40 92 44 84 48 C76 42 66 38 60 36 Z"/></g><ellipse cx="60" cy="34" rx="7" ry="10"/><circle cx="60" cy="22" r="5.5"/><path d="M55 18 L56 10 L60 16 L64 10 L65 18 Z"/><circle cx="58" cy="21" r="1.1" fill="#ff5a5a"/><circle cx="62" cy="21" r="1.1" fill="#ff5a5a"/></g></svg></span>
+    <span class="fx-bat small" style="top:14%;--d:38s;--dl:12s"><svg viewBox="0 0 120 64" aria-hidden="true"><g fill="#000000"><g class="bat-wing-l"><path d="M60 32 C44 6 24 2 10 14 C20 16 26 24 28 32 C20 30 12 32 6 40 C18 40 28 44 36 48 C44 42 54 38 60 36 Z"/></g><g class="bat-wing-r"><path d="M60 32 C76 6 96 2 110 14 C100 16 94 24 92 32 C100 30 108 32 114 40 C102 40 92 44 84 48 C76 42 66 38 60 36 Z"/></g><ellipse cx="60" cy="34" rx="7" ry="10"/><circle cx="60" cy="22" r="5.5"/><path d="M55 18 L56 10 L60 16 L64 10 L65 18 Z"/><circle cx="58" cy="21" r="1.1" fill="#ff5a5a"/><circle cx="62" cy="21" r="1.1" fill="#ff5a5a"/></g></svg></span>
   </div>
 
 <header class="hero">
