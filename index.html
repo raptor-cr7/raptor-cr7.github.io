@@ -33,8 +33,12 @@
     --glass-edge:rgba(255,255,255,.13);
     --glass-ink:rgba(238,238,240,.94);
     --sheen:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,0) 42%);
-    --glow-red:rgba(255,255,255,.05);
-    --glow-gold:rgba(150,150,160,.06);
+    --glow-red:rgba(255,107,0,.22);
+    --glow-gold:rgba(139,47,247,.20);
+    --hw-orange:#ff6b00;
+    --hw-purple:#8b2ff7;
+    --hw-green:#39d353;
+    --hw-pink:#ff2e88;
     --blur:blur(18px) saturate(140%);
   }
   *{box-sizing:border-box}
@@ -51,6 +55,20 @@
       radial-gradient(860px 640px at 108% 28%, var(--glow-gold), transparent 62%),
       radial-gradient(820px 620px at 50% 118%, var(--glow-red), transparent 65%),
       radial-gradient(600px 420px at 88% 92%, var(--glow-gold), transparent 65%);
+    animation:halloweenHue 16s linear infinite;
+  }
+  /* ---------- Halloween colour-changing gradient ---------- */
+  body::after{
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.25;
+    background:linear-gradient(120deg,var(--hw-orange),var(--hw-purple),var(--hw-green),var(--hw-pink),var(--hw-orange));
+    background-size:300% 300%;
+    animation:halloweenWash 18s ease-in-out infinite alternate;
+  }
+  @keyframes halloweenHue{from{filter:hue-rotate(0deg)}to{filter:hue-rotate(360deg)}}
+  @keyframes halloweenWash{0%{background-position:0% 0%}50%{background-position:100% 100%}100%{background-position:0% 100%}}
+  @keyframes gradientSlide{to{background-position:300% 0}}
+  @media (prefers-reduced-motion: reduce){
+    body::before,body::after,.hero-eyebrow,.btn-primary{animation:none}
   }
   .mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
   a{color:inherit}
@@ -70,7 +88,7 @@
   /* ---------- hero ---------- */
   .hero{padding:44px 0 8px}
   .hero-grid{display:grid;grid-template-columns:1.25fr .85fr;gap:34px;align-items:center}
-  .hero-eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--red);font-weight:600;letter-spacing:.06em;margin:0 0 10px}
+  .hero-eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;letter-spacing:.06em;margin:0 0 10px;background:linear-gradient(90deg,var(--hw-orange),var(--hw-pink),var(--hw-purple),var(--hw-green),var(--hw-orange));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:gradientSlide 6s linear infinite}
   h1.display{
     margin:0;font-weight:900;line-height:.92;letter-spacing:-.015em;
     font-size:clamp(64px,11vw,124px);text-transform:uppercase;
@@ -86,15 +104,15 @@
     box-shadow:inset 0 1px 0 var(--glass-hi);
     padding:5px 13px;font-size:13px;font-weight:600;color:var(--ink-2);
   }
-  .chips li.hot{border-color:var(--red);color:var(--red)}
+  .chips li.hot{border-color:var(--hw-orange);color:#ffb347;background:rgba(255,107,0,.12)}
   .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
   .btn{
     display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:700;font-size:15px;
     padding:13px 22px;border-radius:12px;border:1.5px solid var(--ink);transition:transform .15s ease,background .15s ease,color .15s ease;
   }
   .btn svg{width:17px;height:17px;flex:none}
-  .btn-primary{background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,0) 55%),var(--red);border-color:var(--red);color:#0a0a0b;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 10px 24px rgba(0,0,0,.45)}
-  .btn-primary:hover{background:var(--red-deep)}
+  .btn-primary{background:linear-gradient(120deg,var(--hw-orange),var(--hw-pink),var(--hw-purple),var(--hw-green),var(--hw-orange));background-size:300% 100%;animation:gradientSlide 6s linear infinite;border-color:transparent;color:#ffffff;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 10px 24px rgba(0,0,0,.45)}
+  .btn-primary:hover{filter:brightness(1.12)}
   .btn-ghost{background:var(--glass);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);color:var(--ink);box-shadow:inset 0 1px 0 var(--glass-hi)}
   .btn-ghost:hover{background:var(--ink);color:var(--bg)}
   .btn:active{transform:scale(.97)}
@@ -317,6 +335,7 @@
         <p class="hero-name">@raptor.cr7</p>
         <p class="hero-bio">Welcome to SR WORLD ⚡</p>
         <ul class="chips">
+          <li class="hot">🎃 Halloween Edition</li>
           <li class="hot">#kl03</li>
           <li>#malayali</li>
           <li>#kerala</li>
