@@ -79,7 +79,7 @@
   .topstrip b{font-weight:600}
 
   /* ---------- hero ---------- */
-  .hero{position:relative;overflow:hidden;padding:44px 0 8px}
+  .hero{padding:44px 0 8px}
   .hero-grid{display:grid;grid-template-columns:1.25fr .85fr;gap:34px;align-items:center}
   .hero-eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;letter-spacing:.06em;margin:0 0 10px;background:linear-gradient(90deg,var(--gr-mid),var(--gr-pale),var(--gr-mid));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
   h1.display{
@@ -88,22 +88,7 @@
   }
   h1.display .thin{color:transparent;-webkit-text-stroke:2px var(--ink)}
   .hero-name{font-size:clamp(19px,3vw,24px);font-weight:700;margin:16px 0 4px}
-  .hero-grid{position:relative;z-index:1}
-  .season-tag{
-    display:inline-flex;align-items:center;gap:8px;margin:18px 0 0;padding:7px 16px;
-    font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
-    color:#fff;background:linear-gradient(90deg,var(--s1),var(--s2),var(--s3,var(--s2)));
-    border:1px solid var(--s2);border-radius:999px;
-    box-shadow:0 0 22px var(--s-glow,rgba(255,255,255,.25));
-    animation:seasonGlow 2.4s ease-in-out infinite;
-  }
-  .season-tag[hidden]{display:none}
-  .season-tag .s-emoji{font-size:16px}
-  @keyframes seasonGlow{0%,100%{box-shadow:0 0 14px var(--s-glow,rgba(255,255,255,.2))}50%{box-shadow:0 0 30px var(--s-glow,rgba(255,255,255,.45))}}
-  .season-fx{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
-  .season-fx span{position:absolute;top:-8%;opacity:.85;animation:seasonFloat linear infinite}
-  @keyframes seasonFloat{0%{transform:translateY(-6vh) rotate(0deg)}100%{transform:translateY(110vh) rotate(340deg)}}
-  @media (prefers-reduced-motion: reduce){.season-tag,.season-fx span{animation:none}}
+
   .hero-bio{color:var(--ink-2);font-size:16.5px;max-width:34em;margin:0}
   .hero-bio b{color:var(--ink)}
   .chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0;list-style:none}
@@ -114,6 +99,15 @@
     padding:5px 13px;font-size:13px;font-weight:600;color:var(--ink-2);
   }
   .chips li.hot{border-color:var(--gr-red);color:#ff8a96;background:rgba(225,29,53,.14)}
+  .chips li.season-chip{
+    color:#fff;border-color:var(--s2);
+    background:linear-gradient(90deg,var(--s1),var(--s2),var(--s3,var(--s2)));
+    box-shadow:0 0 14px var(--s-glow,rgba(255,255,255,.2));
+    animation:seasonGlow 2.4s ease-in-out infinite;
+  }
+  .chips li.season-chip[hidden]{display:none}
+  @keyframes seasonGlow{0%,100%{box-shadow:0 0 8px var(--s-glow,rgba(255,255,255,.2))}50%{box-shadow:0 0 18px var(--s-glow,rgba(255,255,255,.45))}}
+  @media (prefers-reduced-motion: reduce){.chips li.season-chip{animation:none}}
   .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
   .btn{
     display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:700;font-size:15px;
@@ -356,16 +350,15 @@
 <body>
 
 <header class="hero">
-  <div class="season-fx" id="seasonFx" aria-hidden="true"></div>
   <div class="wrap">
     <div class="hero-grid">
       <div>
         <p class="hero-eyebrow">RAPTOR · OFFICIAL LINKS</p>
         <h1 class="display">Rapt<span class="thin">o</span><span class="perch">r<span class="perch-eagle" aria-hidden="true"><svg viewBox="0 0 240 250" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="bodyGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5f4025"/><stop offset=".55" stop-color="#46301b"/><stop offset="1" stop-color="#2e1f10"/></linearGradient><linearGradient id="wingGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4e3519"/><stop offset="1" stop-color="#241708"/></linearGradient></defs><ellipse cx="118" cy="241" rx="54" ry="7" fill="rgba(0,0,0,.35)"/><g class="pe-sway"><g class="pe-tail"><path d="M158 138 L214 196 Q222 205 212 210 L206 211 L196 190 L188 208 Q184 214 178 206 L160 168 Z" fill="#edf0f3" stroke="#c6ccd4" stroke-width="2"/><path d="M172 152 L196 192 M162 160 L180 200" stroke="#c6ccd4" stroke-width="2" fill="none"/></g><path d="M146 176 L150 226" stroke="#d99a17" stroke-width="8" stroke-linecap="round"/><path d="M138 232 Q150 226 162 232 M140 236 Q150 231 160 236" stroke="#17130c" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M84 84 Q78 58 108 48 Q150 36 172 66 Q190 92 182 128 Q174 158 140 168 Q104 176 88 148 Q76 124 84 84 Z" fill="url(#bodyGrad)"/><path d="M86 88 Q80 122 94 146 Q104 162 122 168 Q104 128 100 96 Q98 80 92 74 Z" fill="#7c562f" opacity=".5"/><g class="pe-wing"><path d="M104 62 Q150 52 176 92 Q190 116 178 138 Q160 128 138 128 Q108 128 98 104 Q92 82 104 62 Z" fill="url(#wingGrad)"/><path d="M108 84 Q140 74 168 96 M106 104 Q136 96 170 114 M112 122 Q140 116 168 128" stroke="rgba(255,235,200,.16)" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M168 128 L186 146 M156 132 L168 152 M142 134 L148 154" stroke="#1c1106" stroke-width="3" stroke-linecap="round"/></g><path d="M104 160 Q100 184 108 200 L124 198 Q122 178 122 164 Z" fill="#3a2716"/><path d="M114 198 L116 230" stroke="#e8a81c" stroke-width="8" stroke-linecap="round"/><path d="M100 236 Q116 229 132 236 M103 241 Q116 235 130 241 M94 231 Q100 238 98 244" stroke="#17130c" stroke-width="3.5" fill="none" stroke-linecap="round"/><g class="pe-head"><path d="M52 74 Q44 52 62 42 Q84 30 102 44 Q114 54 110 70 Q120 84 104 92 Q84 100 68 90 Q54 88 52 74 Z" fill="#f7f9fb"/><path d="M96 84 Q104 92 96 98 Q84 104 72 96 Q86 94 96 84 Z" fill="#dde3e9"/><path d="M66 44 Q76 38 88 40 M62 52 Q72 46 84 46" stroke="#ccd3db" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M54 58 Q34 58 32 72 Q31 82 42 84 Q38 74 48 71 Q58 69 60 64 Q59 58 54 58 Z" fill="#f2b134" stroke="#cf8f0d" stroke-width="1.5"/><circle cx="52" cy="63" r="2.2" fill="#cf8f0d"/><circle cx="59" cy="63" r="4.6" fill="#ffb400" stroke="#201503" stroke-width="1.2"/><circle cx="59" cy="63" r="2.1" fill="#14100a"/><circle cx="60.6" cy="61.4" r="1" fill="#ffffff"/></g></g></svg></span></span></h1>
-        <p class="season-tag" id="seasonTag" hidden><span class="s-emoji" id="seasonEmoji"></span><span id="seasonText"></span></p>
         <p class="hero-name">@raptor.cr7</p>
         <p class="hero-bio">Welcome to SR WORLD ⚡</p>
         <ul class="chips">
+          <li class="season-chip" id="seasonChip" hidden><span id="seasonEmoji"></span> <span id="seasonText"></span></li>
           <li class="hot">#kl03</li>
           <li>#malayali</li>
           <li>#kerala</li>
@@ -950,12 +943,11 @@
   }
   function applySeason(){
     var s = pickSeason(new Date());
-    var tag = document.getElementById('seasonTag');
-    var fx = document.getElementById('seasonFx');
-    if (!s || !tag) return;
+    var chip = document.getElementById('seasonChip');
+    if (!s || !chip) return;
     document.getElementById('seasonEmoji').textContent = s.emoji;
     document.getElementById('seasonText').textContent = s.name + ' Edition';
-    tag.hidden = false;
+    chip.hidden = false;
     var hero = document.querySelector('.hero');
     if (hero){
       hero.style.setProperty('--s1', s.c[0]);
@@ -963,18 +955,6 @@
       hero.style.setProperty('--s3', s.c[2]);
       hero.style.setProperty('--s-glow', s.c[1] + '66');
       hero.setAttribute('data-season', s.id);
-    }
-    if (fx){
-      var html = '';
-      for (var i=0;i<10;i++){
-        var sym = s.fx[i % s.fx.length];
-        var left = (i*9 + 3) % 96;
-        var dur = 9 + (i%5)*2.5;
-        var delay = -(i*1.7);
-        var size = 16 + (i%4)*4;
-        html += '<span style="left:'+left+'%;font-size:'+size+'px;animation-duration:'+dur+'s;animation-delay:'+delay+'s">'+sym+'</span>';
-      }
-      fx.innerHTML = html;
     }
   }
   if (typeof window !== 'undefined') window.__pickSeason = pickSeason;
