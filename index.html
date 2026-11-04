@@ -283,6 +283,18 @@
   .contact p{margin:0;color:var(--ink-2);font-size:14.5px;max-width:36em}
   .contact .actions{display:flex;gap:10px;flex-wrap:wrap}
   .btn-small{padding:11px 18px;font-size:14px}
+  .qr-card{
+    margin-top:16px;border:1px solid var(--glass-edge);border-radius:22px;padding:24px 30px;
+    display:flex;flex-wrap:wrap;gap:22px;align-items:center;
+    background:var(--sheen),var(--glass);
+    backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
+    box-shadow:inset 0 1px 0 var(--glass-hi),var(--shadow);
+  }
+  .qr-tile{flex:0 0 auto;background:#fff;border-radius:14px;padding:10px;line-height:0;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+  .qr-tile svg{width:132px;height:132px;display:block}
+  .qr-card h3{margin:0 0 4px;font-size:22px;font-weight:900}
+  .qr-card p{margin:0;color:var(--ink-2);font-size:14.5px;max-width:36em}
+  .qr-card .qr-url{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--ink);margin-top:8px}
 
   footer{margin-top:54px;border-top:1px solid var(--line);padding:24px 0 40px}
   footer .wrap{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;align-items:center}
@@ -640,6 +652,16 @@
       <div class="actions">
         <a class="btn btn-primary btn-small" href="https://www.instagram.com/raptor.cr7/" target="_blank" rel="noopener">Follow @raptor.cr7</a>
         <button class="btn btn-ghost btn-small" id="copyHandleBtn" type="button">Copy @raptor.cr7</button>
+      </div>
+    </div>
+    <div class="qr-card">
+      <div class="qr-tile">
+        <svg role="img" aria-label="QR code linking to raptor-cr7.github.io" xmlns="http://www.w3.org/2000/svg" width="33" height="33" class="segno"><path fill="#fff" d="M0 0h33v33h-33z"/><path class="qrline" stroke="#000" stroke-width="1" d="M2 2.5h7m1 0h1m3 0h1m3 0h1m1 0h2m2 0h7m-29 1h1m5 0h1m2 0h3m2 0h4m2 0h1m1 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m1 0h5m2 0h4m3 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h3m2 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m2 0h1m1 0h4m4 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m1 0h1m2 0h4m1 0h4m2 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h2m1 0h4m2 0h2m-18 1h1m1 0h1m1 0h6m3 0h1m3 0h1m2 0h3m1 0h2m1 0h1m-28 1h1m1 0h2m2 0h1m2 0h1m6 0h1m2 0h3m5 0h1m-27 1h2m1 0h2m4 0h1m1 0h1m2 0h1m2 0h2m1 0h1m1 0h1m2 0h1m-28 1h1m1 0h1m2 0h1m1 0h1m1 0h1m2 0h5m4 0h3m1 0h3m-26 1h1m1 0h3m2 0h2m2 0h1m2 0h2m1 0h2m1 0h2m-23 1h1m5 0h1m4 0h4m3 0h3m1 0h1m1 0h1m-26 1h2m1 0h1m2 0h1m1 0h5m1 0h3m11 0h1m-29 1h4m1 0h1m1 0h2m1 0h2m2 0h1m1 0h3m2 0h1m1 0h1m3 0h2m-29 1h1m1 0h1m3 0h4m3 0h1m1 0h2m1 0h4m1 0h1m-19 1h1m1 0h1m3 0h1m2 0h2m1 0h1m2 0h1m1 0h2m3 0h2m-29 1h1m3 0h1m1 0h9m2 0h1m2 0h2m1 0h2m2 0h2m-26 1h1m1 0h1m2 0h1m1 0h2m2 0h6m3 0h3m2 0h1m-29 1h1m1 0h1m1 0h4m1 0h2m2 0h1m2 0h1m3 0h5m1 0h2m-20 1h3m1 0h1m1 0h1m1 0h3m1 0h1m3 0h1m3 0h1m-29 1h7m1 0h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h4m-28 1h1m5 0h1m1 0h1m2 0h3m1 0h2m3 0h1m3 0h1m1 0h1m1 0h1m-29 1h1m1 0h3m1 0h1m4 0h1m1 0h1m1 0h2m1 0h1m1 0h6m2 0h1m-29 1h1m1 0h3m1 0h1m1 0h2m1 0h3m1 0h1m1 0h1m1 0h4m1 0h2m2 0h1m-29 1h1m1 0h3m1 0h1m3 0h1m1 0h1m2 0h2m1 0h3m3 0h3m1 0h1m-29 1h1m5 0h1m1 0h1m1 0h1m3 0h1m1 0h2m1 0h2m2 0h1m3 0h1m-28 1h7m4 0h2m1 0h2m1 0h2m1 0h2m2 0h2m1 0h1"/></svg>
+      </div>
+      <div>
+        <h3>Scan to open RAPTOR</h3>
+        <p>Point your phone camera at the code to open this links page — no typing needed.</p>
+        <p class="qr-url">raptor-cr7.github.io</p>
       </div>
     </div>
   </section>
