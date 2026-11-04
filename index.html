@@ -919,20 +919,20 @@
    Movable festivals (Ramadan, Eid, Easter, Onam, Diwali) use year tables — add future years here. */
 (function(){
   var SEASONS=[
-    {id:'new-year',  name:'New Year',       emoji:'\u{1F386}', s:'12-26', e:'01-06', c:['#ffd166','#e11d48','#7c3aed'], fx:['\u{1F386}','\u2728','\u{1F387}','\u{1F942}','\u{1F389}']},
-    {id:'christmas', name:'Christmas',      emoji:'\u{1F384}', s:'12-01', e:'12-25', c:['#e11d35','#14532d','#e8c766'], fx:['\u{1F384}','\u2744\uFE0F','\u{1F381}','\u26C4','\u2B50']},
-    {id:'ramadan',   name:'Ramadan',        emoji:'\u{1F319}', s:'movable', e:'movable', c:['#14532d','#e8c766','#0ea5e9'], fx:['\u{1F319}','\u2B50','\u{1F54C}','\u2728','\u{1F932}'], years:{2026:['02-18','03-18'],2027:['02-07','03-08'],2028:['01-27','02-25']}},
-    {id:'eid-fitr',  name:'Eid al-Fitr',    emoji:'\u{1F54C}', s:'movable', e:'movable', c:['#e8c766','#14532d','#ff9f1c'], fx:['\u{1F54C}','\u{1F319}','\u2B50','\u{1F36C}','\u{1F389}'], years:{2026:['03-19','03-21'],2027:['03-09','03-11'],2028:['02-26','02-28']}},
-    {id:'eid-adha',  name:'Eid al-Adha',    emoji:'\u{1F411}', s:'movable', e:'movable', c:['#e8c766','#8f1d22','#ff9f1c'], fx:['\u{1F411}','\u{1F54C}','\u{1F319}','\u2B50','\u{1F389}'], years:{2026:['05-26','05-28']}},
-    {id:'easter',    name:'Easter',         emoji:'\u{1F423}', s:'movable', e:'movable', c:['#a78bfa','#fde68a','#f472b6'], fx:['\u{1F423}','\u{1F95A}','\u{1F337}','\u{1F430}','\u{1F338}'], years:{2026:['04-03','04-06'],2027:['03-26','03-29'],2028:['04-14','04-17']}},
-    {id:'onam',      name:'Onam',           emoji:'\u{1F338}', s:'movable', e:'movable', c:['#ff9f1c','#14532d','#e8c766'], fx:['\u{1F338}','\u{1F33C}','\u{1F965}','\u{1F6F6}','\u{1F33A}'], years:{2026:['08-16','08-28'],2027:['09-01','09-11']}},
-    {id:'diwali',    name:'Diwali',         emoji:'\u{1FA94}', s:'movable', e:'movable', c:['#ff9f1c','#e8c766','#e11d35'], fx:['\u{1FA94}','\u2728','\u{1F387}','\u{1F31F}','\u{1FA94}'], years:{2026:['11-04','11-09'],2027:['10-26','10-30'],2028:['10-14','10-18']}},
-    {id:'valentines',name:"Valentine's Day",emoji:'\u{1F498}', s:'02-07', e:'02-14', c:['#ff2e88','#e11d35','#ffb3c7'], fx:['\u{1F498}','\u2764\uFE0F','\u{1F339}','\u{1F495}','\u{1F49D}']},
-    {id:'halloween', name:'Halloween',      emoji:'\u{1F383}', s:'10-01', e:'10-31', c:['#ff6b00','#8b2ff7','#1a1a1a'], fx:['\u{1F383}','\u{1F987}','\u{1F47B}','\u{1F577}\uFE0F','\u{1F36C}']},
-    {id:'winter',    name:'Winter',         emoji:'\u2744\uFE0F', s:'01-07', e:'02-06', c:['#7dd3fc','#e0f2fe','#38bdf8'], fx:['\u2744\uFE0F','\u26C4','\u{1F328}\uFE0F','\u{1F9E3}','\u2603\uFE0F']},
-    {id:'spring',    name:'Spring',         emoji:'\u{1F338}', s:'02-15', e:'05-31', c:['#f472b6','#4ade80','#fde68a'], fx:['\u{1F338}','\u{1F337}','\u{1F98B}','\u{1F33C}','\u{1F41D}']},
-    {id:'summer',    name:'Summer',         emoji:'\u2600\uFE0F', s:'06-01', e:'08-31', c:['#ff9f1c','#ffd166','#0ea5e9'], fx:['\u2600\uFE0F','\u{1F30A}','\u{1F349}','\u{1F3D6}\uFE0F','\u{1F60E}']},
-    {id:'autumn',    name:'Autumn',         emoji:'\u{1F342}', s:'09-01', e:'11-30', c:['#b45309','#e8c766','#7c2d12'], fx:['\u{1F342}','\u{1F341}','\u{1F383}','\u{1F330}','\u{1F344}']}
+    {id:'new-year',  name:'New Year', t:'Happy New Year',       emoji:'\u{1F386}', s:'12-26', e:'01-06', c:['#ffd166','#e11d48','#7c3aed'], fx:['\u{1F386}','\u2728','\u{1F387}','\u{1F942}','\u{1F389}']},
+    {id:'christmas', name:'Christmas', t:'Merry Christmas',      emoji:'\u{1F384}', s:'12-01', e:'12-25', c:['#e11d35','#14532d','#e8c766'], fx:['\u{1F384}','\u2744\uFE0F','\u{1F381}','\u26C4','\u2B50']},
+    {id:'ramadan',   name:'Ramadan', t:'Ramadan Kareem',        emoji:'\u{1F319}', s:'movable', e:'movable', c:['#14532d','#e8c766','#0ea5e9'], fx:['\u{1F319}','\u2B50','\u{1F54C}','\u2728','\u{1F932}'], years:{2026:['02-18','03-18'],2027:['02-07','03-08'],2028:['01-27','02-25']}},
+    {id:'eid-fitr',  name:'Eid al-Fitr', t:'Eid Mubarak',    emoji:'\u{1F54C}', s:'movable', e:'movable', c:['#e8c766','#14532d','#ff9f1c'], fx:['\u{1F54C}','\u{1F319}','\u2B50','\u{1F36C}','\u{1F389}'], years:{2026:['03-19','03-21'],2027:['03-09','03-11'],2028:['02-26','02-28']}},
+    {id:'eid-adha',  name:'Eid al-Adha', t:'Eid Mubarak',    emoji:'\u{1F411}', s:'movable', e:'movable', c:['#e8c766','#8f1d22','#ff9f1c'], fx:['\u{1F411}','\u{1F54C}','\u{1F319}','\u2B50','\u{1F389}'], years:{2026:['05-26','05-28']}},
+    {id:'easter',    name:'Easter', t:'Happy Easter',         emoji:'\u{1F423}', s:'movable', e:'movable', c:['#a78bfa','#fde68a','#f472b6'], fx:['\u{1F423}','\u{1F95A}','\u{1F337}','\u{1F430}','\u{1F338}'], years:{2026:['04-03','04-06'],2027:['03-26','03-29'],2028:['04-14','04-17']}},
+    {id:'onam',      name:'Onam', t:'Happy Onam',           emoji:'\u{1F338}', s:'movable', e:'movable', c:['#ff9f1c','#14532d','#e8c766'], fx:['\u{1F338}','\u{1F33C}','\u{1F965}','\u{1F6F6}','\u{1F33A}'], years:{2026:['08-16','08-28'],2027:['09-01','09-11']}},
+    {id:'diwali',    name:'Diwali', t:'Happy Diwali',         emoji:'\u{1FA94}', s:'movable', e:'movable', c:['#ff9f1c','#e8c766','#e11d35'], fx:['\u{1FA94}','\u2728','\u{1F387}','\u{1F31F}','\u{1FA94}'], years:{2026:['11-04','11-09'],2027:['10-26','10-30'],2028:['10-14','10-18']}},
+    {id:'valentines',name:"Valentine's Day", t:'Happy Valentine\'s Day',emoji:'\u{1F498}', s:'02-07', e:'02-14', c:['#ff2e88','#e11d35','#ffb3c7'], fx:['\u{1F498}','\u2764\uFE0F','\u{1F339}','\u{1F495}','\u{1F49D}']},
+    {id:'halloween', name:'Halloween', t:'Happy Halloween',      emoji:'\u{1F383}', s:'10-01', e:'10-31', c:['#ff6b00','#8b2ff7','#1a1a1a'], fx:['\u{1F383}','\u{1F987}','\u{1F47B}','\u{1F577}\uFE0F','\u{1F36C}']},
+    {id:'winter',    name:'Winter', t:'Winter Season',         emoji:'\u2744\uFE0F', s:'01-07', e:'02-06', c:['#7dd3fc','#e0f2fe','#38bdf8'], fx:['\u2744\uFE0F','\u26C4','\u{1F328}\uFE0F','\u{1F9E3}','\u2603\uFE0F']},
+    {id:'spring',    name:'Spring', t:'Spring Season',         emoji:'\u{1F338}', s:'02-15', e:'05-31', c:['#f472b6','#4ade80','#fde68a'], fx:['\u{1F338}','\u{1F337}','\u{1F98B}','\u{1F33C}','\u{1F41D}']},
+    {id:'summer',    name:'Summer', t:'Summer Season',         emoji:'\u2600\uFE0F', s:'06-01', e:'08-31', c:['#ff9f1c','#ffd166','#0ea5e9'], fx:['\u2600\uFE0F','\u{1F30A}','\u{1F349}','\u{1F3D6}\uFE0F','\u{1F60E}']},
+    {id:'autumn',    name:'Autumn', t:'Autumn Season',         emoji:'\u{1F342}', s:'09-01', e:'11-30', c:['#b45309','#e8c766','#7c2d12'], fx:['\u{1F342}','\u{1F341}','\u{1F383}','\u{1F330}','\u{1F344}']}
   ];
   function md(d){ return (d.getMonth()+1)*100 + d.getDate(); }
   function mmdd(s){ var p=s.split('-'); return (+p[0])*100 + (+p[1]); }
@@ -956,7 +956,7 @@
     var chip = document.getElementById('seasonChip');
     if (!s || !chip) return;
     document.getElementById('seasonEmoji').textContent = s.emoji;
-    document.getElementById('seasonText').textContent = s.name + ' Edition';
+    document.getElementById('seasonText').textContent = s.t;
     chip.hidden = false;
     var hero = document.querySelector('.hero');
     if (hero){
