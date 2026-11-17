@@ -276,6 +276,7 @@
   .goat-top{display:flex;flex-wrap:wrap;gap:10px 30px;align-items:baseline;justify-content:space-between}
   .goat h3{margin:0;font-size:24px;font-weight:900}
   .goat-poster{display:block;width:100%;height:auto;border-radius:16px;margin-bottom:20px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+  .no-save{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;pointer-events:none;-webkit-user-drag:none}
   .goat .big{font-size:clamp(44px,8vw,64px);font-weight:900;line-height:1}
   .goat .big small{font-size:.42em;color:var(--ink-3);font-weight:700}
   .goat .big em{font-style:normal;color:var(--red)}
@@ -397,7 +398,7 @@
       </div>
       <div class="hero-art">
         <div class="frame">
-          <img fetchpriority="high" decoding="async" src="https://res.cloudinary.com/s2ta3wwz/image/upload/v1794914810/hero-portrait.webp" alt="RAPTOR — stylised portrait in a black suit and sunglasses on a red background" width="800" height="800" />
+          <img class="no-save" fetchpriority="high" decoding="async" draggable="false" oncontextmenu="return false" src="https://res.cloudinary.com/s2ta3wwz/image/upload/v1794914810/hero-portrait.webp" alt="RAPTOR — stylised portrait in a black suit and sunglasses on a red background" width="800" height="800" />
         </div>
         <div class="tag">INSTAGRAM · <b>@raptor.cr7</b></div>
       </div>
@@ -627,7 +628,7 @@
 
     <!-- Goal count -->
     <div class="goat" aria-labelledby="goat-h">
-      <img class="goat-poster" src="https://res.cloudinary.com/s2ta3wwz/image/upload/v1794915842/cr7-goat.webp" alt="Cristiano Ronaldo — G.O.A.T, with a goat" width="1000" height="1000" loading="lazy" decoding="async" />
+      <img class="goat-poster no-save" src="https://res.cloudinary.com/s2ta3wwz/image/upload/v1794915842/cr7-goat.webp" alt="Cristiano Ronaldo — G.O.A.T, with a goat" width="1000" height="1000" loading="lazy" decoding="async" draggable="false" oncontextmenu="return false" />
       <div class="goat-top">
         <div>
           <h3 id="goat-h">Cristiano Ronaldo</h3>
