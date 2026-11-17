@@ -923,6 +923,7 @@
   }
   function applySeason(){
     var s = pickSeason(new Date());
+    if (Date.now() < 1794951000000){ for (var j=0;j<SEASONS.length;j++) if (SEASONS[j].id==='christmas'){ s = SEASONS[j]; break; } } /* TEMP PREVIEW: Christmas tag until 01:30 Dubai, then auto-reverts to the current season */
     var chip = document.getElementById('seasonChip');
     if (!s || !chip) return;
     document.getElementById('seasonEmoji').textContent = s.emoji;
