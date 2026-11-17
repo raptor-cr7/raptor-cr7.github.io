@@ -341,7 +341,7 @@
   .js-anim .rv.in{opacity:1;transform:none}
   @media (hover:hover) and (pointer:fine){
     .linkcard:hover{border-color:rgba(255,51,79,.6);box-shadow:0 14px 34px rgba(0,0,0,.5),0 0 24px rgba(255,51,79,.28),inset 0 1px 0 var(--glass-hi)}
-    .goat:hover,.contact:hover,.radio-card:hover{border-color:rgba(255,51,79,.5);box-shadow:0 14px 34px rgba(0,0,0,.45),0 0 20px rgba(255,51,79,.22),inset 0 1px 0 var(--glass-hi)}
+    .goat:hover,.contact:hover{border-color:rgba(255,51,79,.5);box-shadow:0 14px 34px rgba(0,0,0,.45),0 0 20px rgba(255,51,79,.22),inset 0 1px 0 var(--glass-hi)}
   }
   @media (prefers-reduced-motion: reduce){
     .js-anim .rv{opacity:1!important;transform:none!important;transition:none!important}
@@ -403,30 +403,10 @@
 
 <main class="wrap">
 
-  <!-- ============ LIVE RADIO ============ -->
   <style>
-    .radio-card{display:flex;align-items:center;gap:16px;margin:4px 0 26px;padding:16px 20px;background:var(--glass);border:1px solid var(--glass-edge);border-radius:var(--radius);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:var(--shadow)}
-    .radio-play{flex:0 0 auto;width:52px;height:52px;border-radius:50%;border:1px solid var(--glass-edge);background:var(--red-deep);color:#FFFFFF;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
-    .radio-play svg{width:24px;height:24px;display:block}
-    .radio-meta{min-width:0}
-    .radio-title{margin:0;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:9px}
-    .radio-sub{margin:3px 0 0;color:var(--ink-3);font-size:.9rem}
-    .live-dot{flex:0 0 auto;width:8px;height:8px;border-radius:50%;background:#ff3b30;box-shadow:0 0 0 0 rgba(255,59,48,.45);animation:livePulse 1.8s infinite}
-    @keyframes livePulse{70%{box-shadow:0 0 0 7px rgba(255,59,48,0)}100%{box-shadow:0 0 0 0 rgba(255,59,48,0)}}
     .tap-shake{animation:tapShake .28s ease}
     @keyframes tapShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-2.5px) rotate(-.5deg)}55%{transform:translateX(2.5px) rotate(.5deg)}80%{transform:translateX(-1px)}}
   </style>
-  <div class="radio-card" role="region" aria-label="Live radio player">
-    <button class="radio-play" id="radioPlay" type="button" aria-label="Play live radio">
-      <svg id="radioPlayIcon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
-    </button>
-    <div class="radio-meta">
-      <p class="radio-title"><span class="live-dot"></span>Live Radio &mdash; Capital London</p>
-      <p class="radio-sub" id="radioStatus">Hit music, live from London &middot; tap play</p>
-    </div>
-    <audio id="radioAudio" preload="none" src="https://media-ice.musicradio.com/CapitalMP3"></audio>
-  </div>
-
   <!-- ============ LINKS ============ -->
   <section id="links" aria-labelledby="links-h">
     <div class="sec-head">
@@ -800,7 +780,7 @@
   /* ---------- reveal animations ---------- */
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var revealEls = [];
-  ['.hero-grid > *', '.radio-card', '#links .sec-head', '#links .finder', '.linkcard', '#goat .goat', '#contact .contact'].forEach(function(sel){
+  ['.hero-grid > *', '#links .sec-head', '#links .finder', '.linkcard', '#goat .goat', '#contact .contact'].forEach(function(sel){
     document.querySelectorAll(sel).forEach(function(el){ if (revealEls.indexOf(el) === -1) revealEls.push(el); });
   });
   revealEls.forEach(function(el, i){
@@ -893,40 +873,9 @@
     });
   }
 
-  /* ---------- live radio ---------- */
-  var radioAudio = document.getElementById('radioAudio'),
-      radioPlay = document.getElementById('radioPlay'),
-      radioIcon = document.getElementById('radioPlayIcon'),
-      radioStatus = document.getElementById('radioStatus'),
-      ICON_PLAY = '<path d="M8 5.5v13l11-6.5z"/>',
-      ICON_PAUSE = '<path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/>';
-  if (radioAudio && radioPlay) {
-    radioPlay.addEventListener('click', function(){
-      if (radioAudio.paused) {
-        radioStatus.textContent = 'Connecting to the live stream\u2026';
-        var p = radioAudio.play();
-        if (p) p.catch(function(){ radioStatus.textContent = 'Could not start the stream \u2014 tap again'; });
-      } else {
-        radioAudio.pause();
-      }
-    });
-    radioAudio.addEventListener('playing', function(){
-      radioIcon.innerHTML = ICON_PAUSE;
-      radioStatus.textContent = 'Now playing \u00b7 Capital London, live';
-      radioPlay.setAttribute('aria-label', 'Pause live radio');
-    });
-    radioAudio.addEventListener('pause', function(){
-      radioIcon.innerHTML = ICON_PLAY;
-      radioStatus.textContent = 'Paused \u00b7 tap play for live radio';
-      radioPlay.setAttribute('aria-label', 'Play live radio');
-    });
-    radioAudio.addEventListener('error', function(){
-      radioIcon.innerHTML = ICON_PLAY;
-      radioStatus.textContent = 'Stream unavailable right now \u2014 try again soon';
-    });
-  }
-
 })();
+
+
 </script>
 <script>
 /* RAPTOR seasonal tag — switches automatically by date. Fixed dates are MM-DD.
