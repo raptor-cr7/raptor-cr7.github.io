@@ -109,15 +109,8 @@
     padding:0;
     letter-spacing:.8px;font-weight:700;font-size:14px;
   }
-  .chips li.season-chip::before{
-    content:"";position:absolute;left:6px;right:6px;bottom:-3px;height:2px;border-radius:2px;
-    background:linear-gradient(90deg,var(--s1),var(--s2),var(--s3,var(--s2)));
-    box-shadow:0 0 8px var(--s-glow,rgba(232,199,102,.5));
-  }
   .chips li.season-chip #seasonText{
-    background:linear-gradient(90deg,var(--s1),var(--s2));
-    -webkit-background-clip:text;background-clip:text;
-    -webkit-text-fill-color:transparent;color:transparent;
+    color:#fff;
     filter:drop-shadow(0 1px 2px rgba(0,0,0,.55)) drop-shadow(0 0 3px var(--s-glow,rgba(232,199,102,.3)));
     animation:seasonTextGlow 3.6s ease-in-out infinite;
   }
