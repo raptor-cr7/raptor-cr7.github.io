@@ -104,7 +104,8 @@
     background:transparent;border:0;box-shadow:none;
     backdrop-filter:none;-webkit-backdrop-filter:none;
     padding:0;
-    color:#fff;font-weight:700;
+    color:#fff;font-weight:700;font-size:16px;
+    animation:seasonTextGlow 3.6s ease-in-out infinite;
   }
   .chips li.season-chip #seasonText{
     background:linear-gradient(90deg,var(--s1),var(--s2));
@@ -113,6 +114,8 @@
     filter:drop-shadow(0 1px 2px rgba(0,0,0,.55));
   }
   .chips li.season-chip[hidden]{display:none}
+  @keyframes seasonTextGlow{0%,100%{filter:drop-shadow(0 0 3px var(--s-glow,rgba(232,199,102,.3)))}50%{filter:drop-shadow(0 0 10px var(--s-glow,rgba(232,199,102,.55)))}}
+  @media (prefers-reduced-motion: reduce){.chips li.season-chip{animation:none}}
   .chips li.music-item{margin-left:auto;padding:0;border:0;background:transparent;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;display:flex;align-items:center;gap:7px}
   .music-label{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.4px;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);padding:6px 9px;border-radius:999px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
   .music-label.on{border-color:rgba(250,204,21,.85);color:#FACC15;box-shadow:0 0 12px rgba(250,204,21,.35)}
