@@ -930,10 +930,14 @@
   }
   function applySeason(){
     var s = pickSeason(new Date());
+    // PREVIEW-ONLY (remove after 2026-11-18 05:56 +04): force next season = Christmas
+    var preview = Date.now() < new Date('2026-11-18T05:56:00+04:00').getTime();
+    if (preview) s = SEASONS[1];
     var chip = document.getElementById('seasonChip');
     if (!s || !chip) return;
     document.getElementById('seasonEmoji').textContent = s.emoji;
     document.getElementById('seasonText').textContent = s.t;
+    if (preview){ var lf = chip.querySelectorAll('.leaf'); for (var i=0;i<lf.length;i++) lf[i].textContent = '\u2744\uFE0F'; }
     chip.hidden = false;
     var hero = document.querySelector('.hero');
     if (hero){
