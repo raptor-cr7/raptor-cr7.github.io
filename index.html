@@ -99,18 +99,18 @@
     padding:5px 13px;font-size:13px;font-weight:600;color:var(--ink-2);
   }
   .chips li.hot{border-color:var(--gr-red);color:#ff8a96;background:rgba(225,29,53,.14)}
-  /* Autumn Glow seasonal badge — dark translucent, amber gradient accent */
+  /* Seasonal tag — text only, no button template */
   .chips li.season-chip{
     position:relative;overflow:visible;
     color:#fff;border:0;outline:none;
-    background:rgba(24,15,8,.6);
-    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-    box-shadow:0 0 14px var(--s-glow,rgba(232,199,102,.35)),inset 0 1px 0 rgba(255,255,255,.12);
-    animation:seasonGlow 3.6s ease-in-out infinite;
+    background:transparent;
+    backdrop-filter:none;-webkit-backdrop-filter:none;
+    box-shadow:none;
+    padding:0;
     letter-spacing:.8px;font-weight:700;font-size:14px;
   }
   .chips li.season-chip::before{
-    content:"";position:absolute;left:14px;right:14px;bottom:-1px;height:2px;border-radius:2px;
+    content:"";position:absolute;left:6px;right:6px;bottom:-3px;height:2px;border-radius:2px;
     background:linear-gradient(90deg,var(--s1),var(--s2),var(--s3,var(--s2)));
     box-shadow:0 0 8px var(--s-glow,rgba(232,199,102,.5));
   }
@@ -125,14 +125,13 @@
     position:absolute;font-size:9px;line-height:1;pointer-events:none;opacity:0;
     animation:leafFall 6s ease-in-out infinite;
   }
-  .chips li.season-chip .leaf.l1{left:6px;top:-4px;animation-delay:0s}
-  .chips li.season-chip .leaf.l2{right:8px;top:-2px;animation-delay:2s}
-  .chips li.season-chip .leaf.l3{left:44%;top:-5px;animation-delay:4s}
+  .chips li.season-chip .leaf.l1{left:-14px;top:0;animation-delay:0s}
+  .chips li.season-chip .leaf.l2{right:-14px;top:2px;animation-delay:2s}
+  .chips li.season-chip .leaf.l3{left:50%;top:-12px;animation-delay:4s}
   .chips li.season-chip[hidden]{display:none}
-  @keyframes seasonGlow{0%,100%{box-shadow:0 0 10px var(--s-glow,rgba(232,199,102,.3)),inset 0 1px 0 rgba(255,255,255,.12)}50%{box-shadow:0 0 18px var(--s-glow,rgba(232,199,102,.5)),inset 0 1px 0 rgba(255,255,255,.12)}}
   @keyframes seasonTextGlow{0%,100%{filter:drop-shadow(0 1px 2px rgba(0,0,0,.55)) drop-shadow(0 0 3px var(--s-glow,rgba(232,199,102,.3)))}50%{filter:drop-shadow(0 1px 2px rgba(0,0,0,.55)) drop-shadow(0 0 10px var(--s-glow,rgba(232,199,102,.55)))}}
   @keyframes leafFall{0%{transform:translateY(-4px) rotate(-12deg);opacity:0}25%{opacity:.55}60%{opacity:.45}100%{transform:translateY(9px) rotate(14deg);opacity:0}}
-  @media (prefers-reduced-motion: reduce){.chips li.season-chip,.chips li.season-chip .leaf{animation:none}.chips li.season-chip .leaf{display:none}}
+  @media (prefers-reduced-motion: reduce){.chips li.season-chip #seasonText,.chips li.season-chip .leaf{animation:none}.chips li.season-chip .leaf{display:none}}
   .chips li.music-item{margin-left:auto;padding:0;border:0;background:transparent;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;display:flex;align-items:center;gap:7px}
   .music-label{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.4px;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);padding:6px 9px;border-radius:999px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
   .music-label.on{border-color:rgba(250,204,21,.85);color:#FACC15;box-shadow:0 0 12px rgba(250,204,21,.35)}
