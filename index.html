@@ -918,12 +918,6 @@
   }
   function applySeason(){
     var s = pickSeason(new Date());
-    // PREVIEW — remove after 2026-11-18 04:20 +04: force next season (Christmas) for 5 mins
-    if (Date.now() < Date.parse('2026-11-18T04:20:00+04:00')){
-      s = SEASONS.filter(function(x){return x.id==='christmas';})[0];
-      var ls = document.querySelectorAll('#seasonChip .leaf');
-      for (var i=0;i<ls.length;i++) ls[i].textContent = '\u2744\uFE0F';
-    }
     var chip = document.getElementById('seasonChip');
     if (!s || !chip) return;
     document.getElementById('seasonEmoji').textContent = s.emoji;
